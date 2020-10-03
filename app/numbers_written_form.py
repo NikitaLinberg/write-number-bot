@@ -21,4 +21,4 @@ def number_written_form(x):
     if 100 < x < 1000:
         hundred_and_ = NUMBER_COMPONENTS[x // 100], 'hundred', number_written_form(x % 100)
         return " ".join(hundred_and_)
-    raise NotImplementedError(f"number_written_form is not implemented for x={x}")
+    raise ValueError(f"number_written_form is not implemented for x={x}")

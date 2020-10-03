@@ -110,7 +110,7 @@ def handle_text(msg, user):
         x = int(s)
         try:
             response = number_written_form(x)
-        except NotImplemented:
+        except Exception:
             response = f"I'm sorry, number {x} is not supported yet :("
     else:
         response = "Please, send me a number, that consists only of digits"
