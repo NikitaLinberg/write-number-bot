@@ -1,3 +1,11 @@
+# PyCharm stuff:
+.idea
+
+# MacOS stuff:
+**/.DS_Store
+
+# Python .gitignore template. Taken from https://github.com/github/gitignore/blob/master/Python.gitignore .
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
