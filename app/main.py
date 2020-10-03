@@ -4,7 +4,7 @@ import os
 from flask import Flask, request
 import telebot
 
-from numbers_written_form import number_written_form
+from app.numbers_written_form import number_written_form
 
 
 APP_URL = "https://write-number-bot.herokuapp.com/"
