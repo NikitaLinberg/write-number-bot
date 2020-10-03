@@ -10,6 +10,8 @@ from app.numbers_written_form import number_written_form
 APP_URL = "https://write-number-bot.herokuapp.com/"
 API_TOKEN = os.environ.get("API_TOKEN")
 ADMINS = [123456811]
+UNSUPPORTED_CONTENT_TYPES = """animation audio contact dice document game invoice location passport_data
+                               photo poll sticker successful_payment venue video video_note voice""".split()
 
 app = Flask(__name__)
 bot = telebot.TeleBot(API_TOKEN)
@@ -115,7 +117,7 @@ def handle_text(msg, user):
     send_message(user.id, response)
 
 
-@bot.message_handler(func=lambda msg: True)
+@bot.message_handler(func=lambda msg: True, content_types=UNSUPPORTED_CONTENT_TYPES)
 @generic_handler_wrapper
 def handle_strange_content_types(msg, user):
     notify_admin(f"sent content-type {msg.content_type!r}", user=user)
