@@ -1,7 +1,10 @@
+import os
 import json
 
 
-NUMBER_COMPONENTS = {int(k): v for k, v in json.load(open("numbers.json")).items()}
+NUMBERS_JSON_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)))
+assert os.path.isfile(NUMBERS_JSON_PATH), f"{NUMBERS_JSON_PATH!r} file must exist!"
+NUMBER_COMPONENTS = {int(k): v for k, v in json.load(open(NUMBERS_JSON_PATH)).items()}
 
 
 def number_written_form(x):
