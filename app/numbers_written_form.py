@@ -7,18 +7,33 @@ assert os.path.isfile(NUMBERS_JSON_PATH), f"{NUMBERS_JSON_PATH!r} file must exis
 NUMBER_COMPONENTS = {int(k): v for k, v in json.load(open(NUMBERS_JSON_PATH)).items()}
 
 
-def number_written_form(x):
-    if x == 0:
-        return "zero"
-    if x % 100 == 0 and x // 100 and x < 1000:
-        hundred_words = NUMBER_COMPONENTS[x // 100], NUMBER_COMPONENTS[100]
-        return " ".join(hundred_words)
+def triplet_written_form(x):
     if x < 100 and x in NUMBER_COMPONENTS:
         return NUMBER_COMPONENTS[x]
     if 20 < x < 100:
         from_twenty_to_hundred = NUMBER_COMPONENTS[x // 10 * 10], NUMBER_COMPONENTS[x % 10]
         return " ".join(from_twenty_to_hundred)
-    if 100 < x < 1000:
-        hundred_and_ = NUMBER_COMPONENTS[x // 100], 'hundred', number_written_form(x % 100)
+    if 100 < x < 1000 and x % 100 != 0:
+        hundred_and_ = NUMBER_COMPONENTS[x // 100], NUMBER_COMPONENTS[100], triplet_written_form(x % 100)
         return " ".join(hundred_and_)
-    raise ValueError(f"number_written_form is not implemented for x={x}")
+    if 100 <= x < 1000 and x % 100 == 0:
+        hundred_and_ = NUMBER_COMPONENTS[x // 100], NUMBER_COMPONENTS[100]
+        return " ".join(hundred_and_)
+
+
+def number_written_form(x):
+    if x == 0:
+        return "zero"
+    triplets = []
+    while x > 0:
+        x, y = divmod(x, 1000)
+        triplets.append(y)
+    components = []
+    p = (len(triplets) - 1) * 3
+    for y in triplets[::-1]:
+        if y:
+            components.append(triplet_written_form(y))
+            if p:
+                components.append(NUMBER_COMPONENTS[10 ** p])
+        p -= 3
+    return " ".join(components)
