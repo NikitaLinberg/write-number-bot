@@ -9,7 +9,7 @@ from app.numbers_written_form import number_written_form
 
 APP_URL = "https://write-number-bot.herokuapp.com/"
 API_TOKEN = os.environ.get("API_TOKEN")
-ADMINS = [123456811]
+ADMINS = [781613729]
 UNSUPPORTED_CONTENT_TYPES = """animation audio contact dice document game invoice location passport_data
                                photo poll sticker successful_payment venue video video_note voice""".split()
 
