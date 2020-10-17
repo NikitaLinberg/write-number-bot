@@ -24,6 +24,8 @@ def triplet_written_form(x):
 def number_written_form(x):
     if x == 0:
         return "zero"
+    if x == 42:
+        return "Answer to the Ultimate Question of Life, the Universe, and Everything".lower()
     triplets = []
     while x > 0:
         x, y = divmod(x, 1000)
