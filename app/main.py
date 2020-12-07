@@ -4,7 +4,7 @@ import os
 from flask import Flask, request
 import telebot
 
-from app.numbers_written_form import number_written_form
+from app.numbers_written_form import number_written_form, parse_number_written_form
 
 
 APP_URL = "https://write-number-bot.herokuapp.com/"
@@ -110,10 +110,13 @@ def handle_text(msg, user):
         x = int(s)
         try:
             response = number_written_form(x)
-        except Exception:
+        except Exception as ex:
             response = f"I'm sorry, number {x} is not supported yet :("
     else:
-        response = "Please, send me a number, that consists only of digits"
+        try:
+            response = parse_number_written_form(s)
+        except Exception as ex:
+            response = str(ex)
     send_message(user.id, response)
 
 
