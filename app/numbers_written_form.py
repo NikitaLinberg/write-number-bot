@@ -6,7 +6,7 @@ import random
 NUMBERS_JSON_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "numbers.json")
 assert os.path.isfile(NUMBERS_JSON_PATH), f"{NUMBERS_JSON_PATH!r} file must exist!"
 NUMBER_COMPONENTS = {int(k): v for k, v in json.load(open(NUMBERS_JSON_PATH)).items()}
-WORD_COMPONENTS = {k: int(v) for v, k in json.load(open("numbers.json")).items()}
+WORD_COMPONENTS = {v: k for k, v in NUMBER_COMPONENTS.items()}
 MAX_RANK = max(NUMBER_COMPONENTS.items())
 
 MEANING_OF_LIFE = "Answer to the Ultimate Question of Life, the Universe, and Everything"
